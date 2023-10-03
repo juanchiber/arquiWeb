@@ -11,6 +11,7 @@ public interface StudentCarrerRepository extends RepositoryBase<StudentCarrer, I
 	
 	
 }
+
 	/*
     @Override
     public void insertEstudianteCarrera(EstudianteCarrera c) {

@@ -1,10 +1,11 @@
+
 package tpi3.tudai.entities;
 
 import java.time.LocalDate;
 import java.util.Optional;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
+// import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -15,8 +16,10 @@ import jakarta.persistence.Table;
 @Table(name = "studentsCarrers")
 public class StudentCarrer {
 
+	/*
 	@EmbeddedId
     private StudentCarrerID id;
+    */
 	
     @Column
     LocalDate inscripcion;
@@ -27,10 +30,12 @@ public class StudentCarrer {
     @Column
     private boolean seGraduo;
     
+    @Id
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "estudiante")
     private Student estudiante;
     
+    @Id
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "carrera")
     private Carrer carrera;

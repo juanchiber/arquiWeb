@@ -16,7 +16,6 @@ public class Carrer {
    
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column

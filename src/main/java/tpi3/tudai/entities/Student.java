@@ -17,28 +17,27 @@ import jakarta.persistence.Table;
 public class Student {
     
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 	
-    //@Column
+    @Column
     private String nombre;
     
-    //@Column
+    @Column
     private String apellido;
     
-    //@Column
+    @Column
     private Integer edad;
     
-    //@Column
+    @Column
     private String genero;
     
-    //@Column
+    @Column
     private String ciudadResidencia;
     
-    //@Column
+    @Column
     private String documento;
     
-    //@Column
+    @Column
     private Integer numeroLibreta;
     
     @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
