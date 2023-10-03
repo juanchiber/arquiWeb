@@ -1,19 +1,23 @@
 package tpi3.tudai.entities;
 
-
 import java.time.LocalDate;
+import java.util.Optional;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
+import jakarta.persistence.Table;
 
 @Entity
-@Data
+@Table(name = "studentsCarrers")
 public class StudentCarrer {
 
+	@EmbeddedId
+    private StudentCarrerID id;
+	
     @Column
     LocalDate inscripcion;
     
@@ -23,12 +27,10 @@ public class StudentCarrer {
     @Column
     private boolean seGraduo;
     
-    @Id
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "estudiante")
     private Student estudiante;
     
-    @Id
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "carrera")
     private Carrer carrera;
@@ -83,5 +85,29 @@ public class StudentCarrer {
     public Carrer getCarrera() {
         return carrera;
     }
+    
+    public Carrer getCarrer(Optional<Carrer> carrerOptional) {
+        return carrerOptional.orElse(null);
+    }
+    
+    public Student getStudent(Optional<Student> studentOptional) {
+        return studentOptional.orElse(null);
+    }
+
+	public void setInscripcion(LocalDate inscripcion) {
+		this.inscripcion = inscripcion;
+	}
+
+	public void setGraduacion(LocalDate graduacion) {
+		this.graduacion = graduacion;
+	}
+
+	public void setEstudiante(Student estudiante) {
+		this.estudiante = estudiante;
+	}
+
+	public void setCarrera(Carrer carrera) {
+		this.carrera = carrera;
+	}
 
 }

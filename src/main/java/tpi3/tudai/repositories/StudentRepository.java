@@ -1,13 +1,22 @@
 package tpi3.tudai.repositories;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.stereotype.Repository;
 import tpi3.tudai.entities.Student;
 
-public interface StudentRepository extends JpaRepository<Student, Integer>  {
+@Repository("StudentRepository")
+public interface StudentRepository extends RepositoryBase<Student, Integer>  {
+	
+	@Query("SELECT s FROM Student s WHERE s.nombre = :nombre")
+	public List<Student> findAllByName(String nombre);
+	
+	@Query("SELECT s FROM Student s WHERE s.apellido = :apellido")
+	public List<Student> findAllBySurname(String apellido);
+	
+	/*@Query("SELECT s FROM Student s WHERE s.id = :id")
+	public Student findById(Integer id);
+	*/
 	
 }
 

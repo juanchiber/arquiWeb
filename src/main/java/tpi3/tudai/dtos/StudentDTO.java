@@ -1,6 +1,7 @@
 package tpi3.tudai.dtos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tpi3.tudai.entities.StudentCarrer;
 
@@ -14,7 +15,7 @@ public class StudentDTO {
     private String ciudadResidencia;
     private String documento;
     private Integer numeroLibreta;
-    private ArrayList<StudentCarrer> carreras;
+    private List<StudentCarrer> carreras;
     private String nombreCarrera;
 
     public StudentDTO(String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
@@ -74,7 +75,7 @@ public class StudentDTO {
         return numeroLibreta;
     }
 
-    public ArrayList<StudentCarrer> getCarreras() {
+    public List<StudentCarrer> getCarreras() {
         return carreras;
     }
 

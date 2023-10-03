@@ -1,60 +1,71 @@
 package tpi3.tudai.repositories;
 
-import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.jpa.repository.Query;
+import tpi3.tudai.entities.Carrer;
 
-import tpi3.tudai.dtos.ReportCarrerDTO;
 
-public class CarrerRepositorio implements CarreraInterface {
+public interface CarrerRepository extends RepositoryBase<Carrer, Integer> {
+	
+	@Query("SELECT c FROM Carrer c WHERE c.nombre = :nombre")
+	public List<Carrer> findAllByName(String nombre);
+	
+	
+}
 
-    @Override
+
+
+
+	/*
     public List<CarrerDTO> getCarrerasDto() {
     	return null;
     }
-    @Override
-    public CarreraDto getCarreraDtoById(Integer id) {
+    
+    public CarrerDTO getCarreraDtoById(Integer id) {
         EntityManager em = this.getEM();
         em.getTransaction().begin();
         String jpql = "SELECT new dtos.CarreraDto(c.nombre, c.duracionAnios)  FROM Carrera c WHERE c.id = ?1";
-        TypedQuery<CarreraDto> typedQuery = em.createQuery(jpql, CarreraDto.class);
+        TypedQuery<CarrerDTO> typedQuery = em.createQuery(jpql, CarrerDTO.class);
         typedQuery.setParameter(1, id);
-        CarreraDto rta = typedQuery.getSingleResult();
+        CarrerDTO rta = typedQuery.getSingleResult();
         em.getTransaction().commit();
         this.closeEM();
         return rta;
     }
-    @Override
-    public Carrera getCarreraById(Integer id) {
+    
+    public Carrer getCarreraById(Integer id) {
         EntityManager em = this.getEM();
         em.getTransaction().begin();
-        String jpql = "SELECT new clases.Carrera("+id+",c.nombre, c.duracionAnios)  FROM Carrera c WHERE c.id ="+id;
-        TypedQuery<Carrera> typedQuery = em.createQuery(jpql, Carrera.class);
-        Carrera rta = typedQuery.getSingleResult();
+        String jpql = "SELECT new clases.Carrer("+id+",c.nombre, c.duracionAnios)  FROM Carrer c WHERE c.id ="+id;
+        TypedQuery<Carrer> typedQuery = em.createQuery(jpql, Carrer.class);
+        Carrer rta = typedQuery.getSingleResult();
         em.getTransaction().commit();
         this.closeEM();
         return rta;
     }
-    @Override
+    
     public boolean removeCarrera(Integer id) {
         return true;
     }
-    @Override
-    public void insertCarrera(Carrera c) {
+    
+    public void insertCarrera(Carrer c) {
         EntityManager em = this.getEM();
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
         this.closeEM();
     }
-    public List<CarreraDto> getCarrerasOrderByInscriptos(){
+    
+    public List<CarrerDTO> getCarrerasOrderByInscriptos(){
         EntityManager em = this.getEM();
         String jpql = "SELECT new dtos.CarreraDto(c.id, c.nombre, c.duracionAnios, COUNT(ec.estudiante.id)) FROM Carrera c JOIN EstudianteCarrera ec  ON (c.id= ec.carrera.id) GROUP BY ec.carrera.id, c.nombre, c.duracionAnios ORDER BY COUNT(ec.estudiante.id) DESC";
         em.getTransaction().begin();
-        TypedQuery<CarreraDto> query = em.createQuery(jpql, CarreraDto.class);
-        List<CarreraDto> resultado= query.getResultList();
+        TypedQuery<CarrerDTO> query = em.createQuery(jpql, CarrerDTO.class);
+        List<CarrerDTO> resultado= query.getResultList();
         em.getTransaction().commit();
         return resultado;
     }
+    
     public List<CarreraReporteDTO> getCarrerasReport(){
     	EntityManager em = this.getEM();
 	    em.getTransaction().begin();
@@ -95,3 +106,4 @@ public class CarrerRepositorio implements CarreraInterface {
 	}
 
 }
+*/

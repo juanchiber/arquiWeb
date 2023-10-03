@@ -1,8 +1,17 @@
 package tpi3.tudai.repositories;
 
-public class StudentCarrerRepository extends Repositorio implements EstudianteCarreraInterface {
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
+import tpi3.tudai.entities.StudentCarrer;
 
-
+public interface StudentCarrerRepository extends RepositoryBase<StudentCarrer, Integer> {
+	
+	@Query("SELECT sc FROM StudentCarrer sc WHERE c.carrera = :carrera")
+	public List<StudentCarrer> findAllByName(String carrera);
+	
+	
+}
+	/*
     @Override
     public void insertEstudianteCarrera(EstudianteCarrera c) {
         EntityManager em = this.getEM();
@@ -25,3 +34,4 @@ public class StudentCarrerRepository extends Repositorio implements EstudianteCa
     }
 
 }
+*/

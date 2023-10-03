@@ -1,3 +1,4 @@
+/*
 package tpi3.tudai.helper;
 
 import java.io.File;
@@ -20,7 +21,6 @@ import tpi3.tudai.entities.Student;
 import tpi3.tudai.entities.StudentCarrer;
 import tpi3.tudai.repositories.StudentCarrerRepository;
 import tpi3.tudai.repositories.StudentRepository;
-
 @Component
 public class DBHelper {
 	
@@ -74,3 +74,4 @@ public class DBHelper {
 		}
 	}        
 }
+*/

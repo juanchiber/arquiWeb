@@ -1,44 +1,44 @@
 package tpi3.tudai.entities;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
-import tpi3.tudai.repositories.StudentCarrerRepository;
+import jakarta.persistence.Table;
+
 
 @Entity
-@Data
+@Table(name = "student")
 public class Student {
     
-//    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 	
-    @Column
+    //@Column
     private String nombre;
     
-    @Column
+    //@Column
     private String apellido;
     
-    @Column
+    //@Column
     private Integer edad;
     
-    @Column
+    //@Column
     private String genero;
     
-    @Column
+    //@Column
     private String ciudadResidencia;
     
-    @Column
+    //@Column
     private String documento;
     
-    @Column
+    //@Column
     private Integer numeroLibreta;
     
     @OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)
@@ -70,7 +70,33 @@ public class Student {
         this.carreras = new HashSet<StudentCarrer>();
     }
     
-    public String getApellido() {
+    
+    
+    public void setId(Integer id) {
+		this.id = id;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	public void setCiudadResidencia(String ciudadResidencia) {
+		this.ciudadResidencia = ciudadResidencia;
+	}
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+	public void setNumeroLibreta(Integer numeroLibreta) {
+		this.numeroLibreta = numeroLibreta;
+	}
+	public String getApellido() {
         return apellido;
     }
     
@@ -93,16 +119,18 @@ public class Student {
     public Integer getNumeroLibreta() {
         return numeroLibreta;
     }
+    
     /*
-    public ArrayList<StudentCarrer> getCarreras(){
+    public List<StudentCarrer> getCarreras(){
         if(this.carreras.isEmpty()){
             StudentCarrerRepository ecr = new StudentCarrerRepository();
-           List<StudentCarrer> aux = ecr.getEstudianteCarreraByIdEstudiante(this.getId());
+           	List<StudentCarrer> aux = ecr.getEstudianteCarreraByIdEstudiante(this.getId());
             return new ArrayList<StudentCarrer>(aux);
         }
         return new ArrayList<StudentCarrer>(this.carreras);
     }
     */
+    
     public String getNombre(){
         return this.nombre;
     }

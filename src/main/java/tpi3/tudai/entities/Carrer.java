@@ -2,49 +2,80 @@ package tpi3.tudai.entities;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
+import jakarta.persistence.Table;
 
 @Entity
-@Data
+@Table(name = "carrers")
 public class Carrer {
    
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     @Column
     private String nombre;
+    
     @Column
-    private Double duracionAnios;
+    private Integer duracionAnios;
+    
     @OneToMany(mappedBy = "carrera")
     Set<StudentCarrer> estudiantes;
     
-    public Carrer(String nombre, Double duracionAnios) {
+    public Carrer(String nombre, Integer duracionAnios) {
         this.nombre = nombre;
         this.duracionAnios = duracionAnios;
         this.estudiantes = new HashSet<StudentCarrer>();
     }
-    public Carrer(Integer id, String nombre, Double duracionAnios) {
+    public Carrer(Integer id, String nombre, Integer duracionAnios) {
         this.id = id;
         this.nombre = nombre;
         this.duracionAnios = duracionAnios;
         this.estudiantes = new HashSet<StudentCarrer>();
     }
+    
     public Carrer() {
         super();
     } 
+    
     public String getNombre() {
         return nombre;
     }
-    public Double getDuracionAnios() {
+    
+    public Integer getDuracionAnios() {
         return duracionAnios;
     }
+    
     public Integer getId() {
         return id;
     }
+    
+    /*
+    public Carrer getCarrerById(Set<Carrer> carreras, Integer id) {
+        for (Carrer carrera : carreras) {
+            if (carrera.getId().equals(id)) {
+                return carrera;
+            }
+        }
+        return null; 
+    }
+   */
+    
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public void setDuracionAnios(Integer duracionAnios) {
+		this.duracionAnios = duracionAnios;
+	}
 }
