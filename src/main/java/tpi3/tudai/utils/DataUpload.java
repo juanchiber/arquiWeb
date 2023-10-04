@@ -8,7 +8,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import tpi3.tudai.entities.Carrer;
 import tpi3.tudai.entities.Student;
-import tpi3.tudai.entities.StudentCarrer; 
+import tpi3.tudai.entities.StudentCarrer;
 import tpi3.tudai.repositories.CarrerRepository;
 import tpi3.tudai.repositories.StudentCarrerRepository; 
 import tpi3.tudai.repositories.StudentRepository;
@@ -62,7 +62,7 @@ public class DataUpload {
         }
         
         File studentsCarrersCSV = ResourceUtils.getFile("src/main/java/tpi3/tudai/csv/estudianteCarrera.csv");
-        try (FileReader reader = new FileReader(studentsCarrersCSV); 
+        try (FileReader reader = new FileReader(studentsCarrersCSV);
         	CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)) {
             for (CSVRecord csvRecord : csvParser) {
                 StudentCarrer studentCarrer = new StudentCarrer();
@@ -70,8 +70,8 @@ public class DataUpload {
                 Integer idStudent= Integer.parseInt(csvRecord.get("id_estudiante"));
                 Optional<Carrer> carrerOptional= carrerRepository.findById(idCarrer);
                 Optional<Student> studentOptional= studentRepository.findById(idStudent);
-                //System.out.println(carrerOptional.get().getNombre());
-                //System.out.println(studentOptional.get().getNombre());
+                System.out.println(carrerOptional.get().getNombre());
+                System.out.println(studentOptional.get().getNombre());
                 Carrer carrer= studentCarrer.getCarrer(carrerOptional);
                 Student student= studentCarrer.getStudent(studentOptional);
                 studentCarrer.setGraduacion(LocalDate.of(Integer.parseInt(csvRecord.get("graduacion")),1,1));
