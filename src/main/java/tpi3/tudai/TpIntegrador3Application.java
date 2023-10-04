@@ -23,6 +23,7 @@ public class TpIntegrador3Application {
 	@PostConstruct
 	public void init() throws IOException {
 		data.loadDataFromCSV();
+
 	}
 
 }

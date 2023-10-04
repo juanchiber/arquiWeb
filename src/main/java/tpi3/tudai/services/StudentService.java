@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import tpi3.tudai.dtos.StudentDTO;
 import tpi3.tudai.entities.Student;
 import tpi3.tudai.repositories.StudentRepository;
 
@@ -24,10 +25,12 @@ public class StudentService implements BaseService<Student>{
 
 	@Override
 	@Transactional
-	public Student findById(Integer id) throws Exception{
+	public StudentDTO findById(Integer id) throws Exception{
 		try {
-			Optional<Student> student= repository.findById(id);
-			return student.get();
+//			Optional<Student> student=
+			Optional<Student> resultado = repository.findById(id);
+			Student s=resultado.get();
+			return new StudentDTO(s);
 		}
 		catch(Exception e) {
 			throw new Exception(e.getMessage());
@@ -58,6 +61,7 @@ public class StudentService implements BaseService<Student>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	
 
 }
