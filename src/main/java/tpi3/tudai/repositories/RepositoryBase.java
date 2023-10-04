@@ -31,13 +31,13 @@ public interface RepositoryBase<T,ID extends Serializable> extends org.springfra
      * @param id Identificador único de la entidad.
      * @return True en caso de existir, caso contraio, false.
      */
-    boolean existsById(Long id);
+
 
     /**
      * Elimina una entidad correspondiente al id ingresado por parámetro.
      * @param id Identificador único de la entidad.
      */
-    void deleteById(Long id);
+    void deleteById(Integer id);
 
     /**
      * Persiste una entidad ingresada por parámetro.

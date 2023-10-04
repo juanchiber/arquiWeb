@@ -70,14 +70,14 @@ public class DataUpload {
                 Integer idStudent= Integer.parseInt(csvRecord.get("id_estudiante"));
                 Optional<Carrer> carrerOptional= carrerRepository.findById(idCarrer);
                 Optional<Student> studentOptional= studentRepository.findById(idStudent);
-                //System.out.println(carrerOptional.get().getNombre());
-                //System.out.println(studentOptional.get().getNombre());
                 Carrer carrer= studentCarrer.getCarrer(carrerOptional);
                 Student student= studentCarrer.getStudent(studentOptional);
-                studentCarrer.setGraduacion(LocalDate.of(Integer.parseInt(csvRecord.get("graduacion")),1,1));
-                studentCarrer.setInscripcion(LocalDate.of(Integer.parseInt(csvRecord.get("graduacion")),1,1));
+                LocalDate inscripcion =  LocalDate.of(Integer.parseInt(csvRecord.get("inscripcion")),1,1) ;
+                LocalDate graduacion =  LocalDate.of(Integer.parseInt(csvRecord.get("graduacion")),1,1) ;
                 studentCarrer.setCarrera(carrer);
                 studentCarrer.setEstudiante(student);
+                studentCarrer.setInscripcion(inscripcion);
+                studentCarrer.setGraduacion(graduacion);
                 studentCarrerRepository.save(studentCarrer);
             }
         }
