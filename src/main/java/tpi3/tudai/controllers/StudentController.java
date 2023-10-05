@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tpi3.tudai.dtos.StudentDTO;
 import tpi3.tudai.entities.Student;
 import tpi3.tudai.repositories.StudentRepository;
 import tpi3.tudai.services.StudentService;
@@ -33,7 +34,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("")	
-	public ResponseEntity<?> save(@RequestBody Student s){
+	public ResponseEntity<?> save(@RequestBody StudentDTO s){
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.save(s));
 		}

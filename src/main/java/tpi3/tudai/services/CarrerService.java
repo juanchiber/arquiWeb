@@ -43,18 +43,8 @@ public class CarrerService implements BaseService<Carrer>{
 		}
 	}
 
-	@Override
-	@Transactional
-	public Carrer update(Long id, Carrer entity) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	@Transactional
-	public boolean delete(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+
 	
 }

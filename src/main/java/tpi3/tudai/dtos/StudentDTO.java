@@ -1,13 +1,18 @@
 package tpi3.tudai.dtos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import lombok.Getter;
+import lombok.Setter;
 import tpi3.tudai.entities.Student;
 import tpi3.tudai.entities.StudentCarrer;
-
+@Getter
+@Setter
 public class StudentDTO {
-	   
+
 	private Integer id;
     private String nombre;
     private String apellido;
@@ -16,9 +21,13 @@ public class StudentDTO {
     private String ciudadResidencia;
     private String documento;
     private Integer numeroLibreta;
-    private List<StudentCarrer> carreras;
+    private Set<StudentCarrer> carreras;
     private String nombreCarrera;
 
+
+    public StudentDTO(){
+        super();
+    }
     public StudentDTO(String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,9 +45,12 @@ public class StudentDTO {
         this.ciudadResidencia = s.getCiudadResidencia();
         this.documento = s.getDocumento();
         this.numeroLibreta = s.getNumeroLibreta();
+        this.carreras= new HashSet<>();
+
     }
     
-    public StudentDTO(String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta, String nombreCarrera) {
+    public StudentDTO(Integer id,String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta, String nombreCarrera) {
+          this.id=id;
     	  this.nombre = nombre;
           this.apellido = apellido;
           this.edad = edad;
@@ -48,45 +60,56 @@ public class StudentDTO {
           this.numeroLibreta = numeroLibreta;
           this.nombreCarrera = nombreCarrera;
     }
-
-    public Integer getId() {
-        return id;
+    public StudentDTO(Integer id,String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
+        this.id=id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.genero = genero;
+        this.ciudadResidencia = ciudadResidencia;
+        this.documento = documento;
+        this.numeroLibreta = numeroLibreta;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+
+//    public Integer getId() {
+//        return id;
+//    }
+
+//    public String getNombre() {
+//        return nombre;
+//    }
     @Override
 	public String toString() {
 		return "EstudianteDto [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
 	}
- 	public String getApellido() {
-        return apellido;
-    }
+// 	public String getApellido() {
+//        return apellido;
+//    }
 
-    public Integer getEdad() {
-        return edad;
-    }
+//    public Integer getEdad() {
+//        return edad;
+//    }
 
-    public String getGenero() {
-        return genero;
-    }
+//    public String getGenero() {
+//        return genero;
+//    }
 
-    public String getCiudadResidencia() {
-        return ciudadResidencia;
-    }
+//    public String getCiudadResidencia() {
+//        return ciudadResidencia;
+//    }
 
 
-    public String getDocumento() {
-        return documento;
-    }
+//    public String getDocumento() {
+//        return documento;
+//    }
+//
+//    public Integer getNumeroLibreta() {
+//        return numeroLibreta;
+//    }
 
-    public Integer getNumeroLibreta() {
-        return numeroLibreta;
-    }
-
-    public List<StudentCarrer> getCarreras() {
-        return carreras;
-    }
+//    public Set<StudentCarrer> getCarreras() {
+//        return carreras;
+//    }
 
 }

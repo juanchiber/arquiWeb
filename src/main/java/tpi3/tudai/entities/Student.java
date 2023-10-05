@@ -11,11 +11,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import tpi3.tudai.dtos.StudentDTO;
 
 
 @Entity
 @Table(name = "student")
 @Data
+@Getter
+@Setter
 public class Student {
     
 	@Id
@@ -66,6 +71,17 @@ public class Student {
         this.numeroLibreta = numeroLibreta;
         this.carreras = new HashSet<StudentCarrer>();
     }
+    public Student(StudentDTO s) {
+        this.id = s.getId();
+        this.nombre = s.getNombre();
+        this.apellido = s.getApellido();
+        this.edad = s.getEdad();
+        this.genero = s.getGenero();
+        this.ciudadResidencia = s.getCiudadResidencia();
+        this.documento = s.getDocumento();
+        this.numeroLibreta = s.getNumeroLibreta();
+        this.carreras = new HashSet<StudentCarrer>();
+    }
     
     public Student() {
         this.carreras = new HashSet<StudentCarrer>();
@@ -97,29 +113,29 @@ public class Student {
 	public void setNumeroLibreta(Integer numeroLibreta) {
 		this.numeroLibreta = numeroLibreta;
 	}
-	public String getApellido() {
-        return apellido;
-    }
-    
-    public Integer getEdad() {
-        return edad;
-    }
-    
-    public String getGenero() {
-        return genero;
-    }
-    
-    public String getCiudadResidencia() {
-        return ciudadResidencia;
-    }
-    
-    public String getDocumento() {
-        return documento;
-    }
-    
-    public Integer getNumeroLibreta() {
-        return numeroLibreta;
-    }
+//	public String getApellido() {
+//        return apellido;
+//    }
+//
+//    public Integer getEdad() {
+//        return edad;
+//    }
+//
+//    public String getGenero() {
+//        return genero;
+//    }
+//
+//    public String getCiudadResidencia() {
+//        return ciudadResidencia;
+//    }
+//
+//    public String getDocumento() {
+//        return documento;
+//    }
+//
+//    public Integer getNumeroLibreta() {
+//        return numeroLibreta;
+//    }
     
     /*
     public List<StudentCarrer> getCarreras(){
@@ -132,12 +148,12 @@ public class Student {
     }
     */
     
-    public String getNombre(){
-        return this.nombre;
-    }
-    public Integer getId() {
-        return id;
-    }
+//    public String getNombre(){
+//        return this.nombre;
+//    }
+//    public Integer getId() {
+//        return id;
+//    }
 	@Override
 	public String toString() {
 		return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";

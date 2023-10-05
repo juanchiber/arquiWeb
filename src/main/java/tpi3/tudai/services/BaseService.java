@@ -35,7 +35,6 @@ import java.util.List;
 	     * @return Retorna la entidad actualizada.
 	     * @throws Exception e
 	     */
-	    public E update(Long id, E entity)throws Exception;
 
 	    /**
 	     * Servicio encargado de eliminar una entidad correspondiente al id ingresado por parámetro.
@@ -43,6 +42,6 @@ import java.util.List;
 	     * @return True en caso de eliminación exitosa, caso contrario false.
 	     * @throws Exception e
 	     */
-	    public boolean delete(Long id)throws Exception;
+
 	}
 

@@ -1,5 +1,8 @@
 package tpi3.tudai.dtos;
 
+import lombok.Getter;
+
+@Getter
 public class ReportCarrerDTO {
 
 	private String nombre;

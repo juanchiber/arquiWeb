@@ -1,6 +1,8 @@
 package tpi3.tudai.repositories;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Query;
 import tpi3.tudai.entities.Carrer;
 
@@ -9,7 +11,9 @@ public interface CarrerRepository extends RepositoryBase<Carrer, Integer> {
 	
 	@Query("SELECT c FROM Carrer c WHERE c.nombre = :nombre")
 	public List<Carrer> findAllByName(String nombre);
-	
+	@Override
+	@Query("SELECT c FROM Carrer c WHERE c.id = :id")
+	public Optional<Carrer> findById(Integer id);
 	
 }
 

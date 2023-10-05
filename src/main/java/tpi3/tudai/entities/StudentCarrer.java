@@ -16,12 +16,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
 @Table(name = "studentsCarrers")
 @Data
 @IdClass(StudentCarrerID.class)
+@Getter
+@Setter
 public class StudentCarrer {
 	
     //@EmbeddedId
@@ -64,6 +68,18 @@ public class StudentCarrer {
     	c.getStudentCarrers().add(this);
          */
 	}
+    public StudentCarrer( Student e, Carrer c) {
+        //this.idComp = new StudentCarrerID(e, c);
+        this.inscripcion = LocalDate.now();
+        this.graduacion=LocalDate.of(0, 1, 1);
+        this.estudiante = e;
+        this.carrera = c;
+        this.seGraduo=false;
+        /*
+        e.getStudentCarrers().add(this);
+    	c.getStudentCarrers().add(this);
+         */
+    }
     /*
     public StudentCarrer(LocalDate inscripcion, Student e, Carrer c) {
         this.inscripcion = inscripcion;

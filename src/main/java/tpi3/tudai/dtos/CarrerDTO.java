@@ -1,5 +1,8 @@
 package tpi3.tudai.dtos;
 
+import lombok.Getter;
+
+@Getter
 public class CarrerDTO {
     private String nombre;
     private Double duracionAnios;
@@ -17,19 +20,19 @@ public class CarrerDTO {
         this.duracionAnios = duracionAnios;
     }
     
-    public String getNombre() {
-        return nombre;
-    }
-    public Double getDuracionAnios() {
-        return duracionAnios;
-    }
+//    public String getNombre() {
+//        return nombre;
+//    }
+//    public Double getDuracionAnios() {
+//        return duracionAnios;
+//    }
 	@Override
 	public String toString() {
 		return "CarreraDto [nombre=" + nombre + "]";
 	}
-	public Integer getId() {
-		return id;
-	}
+//	public Integer getId() {
+//		return id;
+//	}
 	
 	
 }
