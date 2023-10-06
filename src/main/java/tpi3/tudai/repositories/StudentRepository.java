@@ -19,8 +19,18 @@ public interface StudentRepository extends RepositoryBase<Student, Integer>  {
 	@Override
 	@Query("SELECT s FROM Student s WHERE s.id = :id")
 	public Optional<Student> findById(Integer id);
-
 	
+	@Query("SELECT s FROM Student s WHERE s.genero= :genre")
+	public List<Student> findByGenero(String genre);
+	
+	@Query("SELECT s FROM Student s WHERE s.numeroLibreta= :notebook")
+	public Optional<Student> findByNotebook(Integer notebook);
+	
+	@Query("SELECT s FROM Student s ORDER BY s.nombre ASC")
+	public List<Student> findAllOrderByName();
+
+	@Query("SELECT s FROM Student s JOIN StudentCarrer sc ON (s.id = sc.estudiante.id) WHERE sc.carrera.id= :id AND s.ciudadResidencia= :city")
+	public List<Student> findStudentsByCityAndCarrer(Integer id, String city);
 }
 
 /*

@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tpi3.tudai.dtos.StudentDTO;
 import tpi3.tudai.entities.Student;
@@ -31,6 +33,43 @@ public class StudentController {
 		catch(Exception e){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente mas tarde.\"}");
 		}
+	}
+	
+	@GetMapping("genre/{genero}")
+    public ResponseEntity<?> getAllByGenero(@PathVariable String genero){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findByGenero(genero));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Intente nuevamente.\"\n\"error\":\""+e.getMessage()+"\"}");
+        }
+    }
+	
+	@GetMapping("libreta/{libreta}")
+    public ResponseEntity<?> getByNotebook(@PathVariable Integer libreta) {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findByNotebook(libreta));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Intente nuevamente.\"\n\"error\":\""+e.getMessage()+"\"}");
+        }
+    }
+	
+	@GetMapping("/orderByName/{name}")
+	public ResponseEntity<?> getAllOrderByName(){
+		try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllOrderByName());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Intente nuevamente.\"\n\"error\":\""+e.getMessage()+"\"}");
+        }
+	}
+	
+	@GetMapping("/carrerAndCity/{id}/{city}") 
+	// @PostMapping("/carrerAndCity")
+	public ResponseEntity<?> getStudentsByCityAndCarrer(@PathVariable Integer id, @PathVariable String city){
+		try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findStudentsByCityAndCarrer(id, city));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Intente nuevamente.\"\n\"error\":\""+e.getMessage()+"\"}");
+        }
 	}
 	
 	@PostMapping("")	

@@ -38,19 +38,7 @@ public class StudentCarrerController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
 		}
 	}
-	@PostMapping("/matricular")
-	public ResponseEntity<?> matricular(@RequestParam Integer id_Estudiante, @RequestParam Integer id_Carrera){
-
-		try {
-
-
-			return ResponseEntity.status(HttpStatus.OK).body(service.matricular(id_Estudiante,id_Carrera));
-		}
-		catch(Exception e){
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
-		}
-
-	}
+	
 
 }
 

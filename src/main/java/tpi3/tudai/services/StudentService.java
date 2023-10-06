@@ -32,7 +32,6 @@ public class StudentService implements BaseService<StudentDTO>{
 	@Transactional
 	public StudentDTO findById(Integer id) throws Exception{
 		try {
-//			Optional<Student> student=
 			Optional<Student> resultado = repository.findById(id);
 			Student s=resultado.get();
 			return new StudentDTO(s);
@@ -42,7 +41,26 @@ public class StudentService implements BaseService<StudentDTO>{
 		}
 
 	}
-
+	
+	@Transactional
+    public List<StudentDTO> findByGenero(String genero) {
+       return repository.findByGenero(genero).stream().map(StudentDTO::new ).toList();
+    }
+	
+	@Transactional
+    public StudentDTO findByNotebook(Integer libreta) {
+        return repository.findByNotebook(libreta).map(StudentDTO::new).orElseThrow(
+            () -> new IllegalArgumentException("Libreta de usuario invalida:" + libreta));
+    }
+	
+	public List<StudentDTO> findAllOrderByName(){
+		return repository.findAllOrderByName().stream().map(StudentDTO::new).toList();
+	}
+	
+	public List<StudentDTO> findStudentsByCityAndCarrer(Integer id, String city){
+		return repository.findStudentsByCityAndCarrer(id, city).stream().map(StudentDTO::new).toList();
+	}
+	
 	@Override
 	@Transactional
 	public StudentDTO save(StudentDTO s) throws Exception {

@@ -32,6 +32,16 @@ public class CarrerController {
 		}
 	}
 	
+	@GetMapping("/OrderByRegistered")
+	public ResponseEntity<?> getCarrersOrderByRegistered(){
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(service.findCarrersOrderByRegistered());
+		}
+		catch(Exception e){
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente mas tarde.\"}");
+		}
+	}
+	
 	@PostMapping("")	
 	public ResponseEntity<?> save(@RequestBody CarrerDTO c){
 		try {
@@ -41,13 +51,13 @@ public class CarrerController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
 		}
 	}
+	
 	@PostMapping("/matricular")
-	public ResponseEntity<?> matricular(@RequestParam Integer id_Estudiante, @RequestParam Integer id_Carrera){
-		System.out.println("1 controler");
+	public ResponseEntity<?> matricular(@RequestBody StudentCarrerDTO sc){
 		try {
-			System.out.println("2 controler");
-
-			return ResponseEntity.status(HttpStatus.OK).body(serviceStudentCarrera.matricular(id_Estudiante,id_Carrera));
+			service.matricular(sc);
+			return ResponseEntity.status(HttpStatus.OK).body("Se matriculo correctamente el estudiante con id: " + sc.getId_Estudiante() + " en la carrera: " + sc.getId_Carrera());
+			
 		}
 		catch(Exception e){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");

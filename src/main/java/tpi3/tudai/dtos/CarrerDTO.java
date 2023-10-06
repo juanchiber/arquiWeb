@@ -14,30 +14,41 @@ public class CarrerDTO {
         this.nombre = nombre;
         this.duracionAnios = duracionAnios;
     }
-    public CarrerDTO(Integer id,String nombre, Integer duracionAnios,long cantidadInscriptos) {
+    
+    public CarrerDTO(Integer id, String nombre, Integer duracionAnios, long cantidadInscriptos) {
     	this.id=id;
-    	this.cantidadInscriptos=cantidadInscriptos;
         this.nombre = nombre;
         this.duracionAnios = duracionAnios;
+        this.cantidadInscriptos= cantidadInscriptos;
     }
+    
     public CarrerDTO(Carrer c) {
         this.nombre = c.getNombre();
         this.duracionAnios = c.getDuracionAnios();
+        this.id= c.getId();
     }
     
-//    public String getNombre() {
-//        return nombre;
-//    }
-//    public Double getDuracionAnios() {
-//        return duracionAnios;
-//    }
+    public long getCantidadInscriptos() {
+		return cantidadInscriptos;
+	}
+
+	public void setCantidadInscriptos(Integer cantidadInscriptos) {
+		this.cantidadInscriptos = cantidadInscriptos;
+	}
+
+	public String getNombre() {
+        return nombre;
+    }
+    public Integer getDuracionAnios() {
+        return duracionAnios;
+    }
 	@Override
 	public String toString() {
 		return "CarreraDto [nombre=" + nombre + "]";
 	}
-//	public Integer getId() {
-//		return id;
-//	}
+	public Integer getId() {
+		return id;
+	}
 	
 	
 }

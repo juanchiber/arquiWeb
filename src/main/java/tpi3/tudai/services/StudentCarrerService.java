@@ -49,7 +49,7 @@ public class StudentCarrerService implements BaseService<StudentCarrerDTO>{
 		return null;
 	}
 
-
+	/*
 	@Transactional
 	public StudentCarrerDTO matricular(Integer id_student, Integer id_carrer) throws Exception {
 		System.out.println("1 service");
@@ -60,7 +60,7 @@ public class StudentCarrerService implements BaseService<StudentCarrerDTO>{
 			Student student= resultado.get();
 			Optional<Carrer> resultadocarrera= this.repositoryCarrer.findById(id_carrer);
 			Carrer carrer= resultadocarrera.get();
-            StudentCarrer sce= new StudentCarrer(student,carrer);
+            StudentCarrer sce= new StudentCarrer(student, carrer);
 			repository.save(sce);
 			return new StudentCarrerDTO(sce);
 
@@ -69,6 +69,7 @@ public class StudentCarrerService implements BaseService<StudentCarrerDTO>{
 			throw new Exception(e.getMessage());
 		}
 	}
+	*/
 
 
 	

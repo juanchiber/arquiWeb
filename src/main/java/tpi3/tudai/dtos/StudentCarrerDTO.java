@@ -26,5 +26,22 @@ public class StudentCarrerDTO {
       this.id_Carrera= sc.getCarrera().getId();
       this.id_Estudiante=sc.getEstudiante().getId();
     }
+    
+	public Integer getId_Estudiante() {
+		return id_Estudiante;
+	}
+	
+	public Integer getId_Carrera() {
+		return id_Carrera;
+	}
+	public void setId_Estudiante(Integer id_Estudiante) {
+		this.id_Estudiante = id_Estudiante;
+	}
+	public void setId_Carrera(Integer id_Carrera) {
+		this.id_Carrera = id_Carrera;
+	}
+	
+    
+    
 
 }

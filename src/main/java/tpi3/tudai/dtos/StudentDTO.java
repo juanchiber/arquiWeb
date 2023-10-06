@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import tpi3.tudai.entities.Student;
 import tpi3.tudai.entities.StudentCarrer;
+
 @Getter
 @Setter
 public class StudentDTO {
@@ -22,12 +23,13 @@ public class StudentDTO {
     private String documento;
     private Integer numeroLibreta;
     private Set<StudentCarrer> carreras;
-    private String nombreCarrera;
 
 
     public StudentDTO(){
         super();
     }
+    
+    /*
     public StudentDTO(String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -37,7 +39,10 @@ public class StudentDTO {
         this.documento = documento;
         this.numeroLibreta = numeroLibreta;
     }
+    */
+    
     public StudentDTO(Student s) {
+    	this.id = s.getId();
         this.nombre = s.getNombre();
         this.apellido = s.getApellido();
         this.edad = s.getEdad();
@@ -49,7 +54,7 @@ public class StudentDTO {
 
     }
     
-    public StudentDTO(Integer id,String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta, String nombreCarrera) {
+    public StudentDTO(Integer id, String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
           this.id=id;
     	  this.nombre = nombre;
           this.apellido = apellido;
@@ -58,58 +63,45 @@ public class StudentDTO {
           this.ciudadResidencia = ciudadResidencia;
           this.documento = documento;
           this.numeroLibreta = numeroLibreta;
-          this.nombreCarrera = nombreCarrera;
-    }
-    public StudentDTO(Integer id,String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
-        this.id=id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.genero = genero;
-        this.ciudadResidencia = ciudadResidencia;
-        this.documento = documento;
-        this.numeroLibreta = numeroLibreta;
     }
 
+    public Integer getId() {
+        return id;    }
 
-//    public Integer getId() {
-//        return id;
-//    }
+    public String getNombre() {
+        return nombre;
+    }
+ 	public String getApellido() {
+        return apellido;
+    }
 
-//    public String getNombre() {
-//        return nombre;
-//    }
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public String getCiudadResidencia() {
+        return ciudadResidencia;
+    }
+
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public Integer getNumeroLibreta() {
+        return numeroLibreta;
+    }
+
+    public Set<StudentCarrer> getCarreras() {
+        return carreras;
+    }
+
     @Override
-	public String toString() {
-		return "EstudianteDto [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
-	}
-// 	public String getApellido() {
-//        return apellido;
-//    }
-
-//    public Integer getEdad() {
-//        return edad;
-//    }
-
-//    public String getGenero() {
-//        return genero;
-//    }
-
-//    public String getCiudadResidencia() {
-//        return ciudadResidencia;
-//    }
-
-
-//    public String getDocumento() {
-//        return documento;
-//    }
-//
-//    public Integer getNumeroLibreta() {
-//        return numeroLibreta;
-//    }
-
-//    public Set<StudentCarrer> getCarreras() {
-//        return carreras;
-//    }
-
+    public String toString() {
+    	return "EstudianteDto [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+    }
 }

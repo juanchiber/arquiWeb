@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
+
+import tpi3.tudai.dtos.CarrerDTO;
 import tpi3.tudai.entities.Carrer;
 
 
@@ -11,14 +13,14 @@ public interface CarrerRepository extends RepositoryBase<Carrer, Integer> {
 	
 	@Query("SELECT c FROM Carrer c WHERE c.nombre = :nombre")
 	public List<Carrer> findAllByName(String nombre);
+	
 	@Override
 	@Query("SELECT c FROM Carrer c WHERE c.id = :id")
 	public Optional<Carrer> findById(Integer id);
 	
+	@Query("SELECT new tpi3.tudai.dtos.CarrerDTO(c.id, c.nombre, c.duracionAnios, COUNT(sc.estudiante.id)) FROM Carrer c JOIN StudentCarrer sc ON (c.id=sc.carrera.id) GROUP BY sc.carrera.id, c.nombre, c.duracionAnios ORDER BY COUNT(sc.estudiante.id) DESC")
+	public List<CarrerDTO> findCarrersOrderByRegistered();
 }
-
-
-
 
 	/*
     public List<CarrerDTO> getCarrerasDto() {
