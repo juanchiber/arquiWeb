@@ -2,6 +2,7 @@ package tpi3.tudai.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,16 +45,23 @@ public class StudentCarrerService implements BaseService<StudentCarrerDTO>{
 	}
 
 	@Override
+	public StudentCarrerDTO save(StudentCarrerDTO entity) throws Exception {
+		return null;
+	}
+
+
 	@Transactional
-	public StudentCarrerDTO save(StudentCarrerDTO sc) throws Exception {
+	public StudentCarrerDTO matricular(Integer id_student, Integer id_carrer) throws Exception {
+		System.out.println("1 service");
+		Objects.requireNonNull(id_student);
+		Objects.requireNonNull(id_carrer);
 		try {
-			Optional<Student> resultado= this.repositoryStudent.findById(sc.getId_Estudiante());
+			Optional<Student> resultado= this.repositoryStudent.findById(id_student);
 			Student student= resultado.get();
-			Optional<Carrer> resultadocarrera= this.repositoryCarrer.findById(sc.getId_Carrera());
+			Optional<Carrer> resultadocarrera= this.repositoryCarrer.findById(id_carrer);
 			Carrer carrer= resultadocarrera.get();
             StudentCarrer sce= new StudentCarrer(student,carrer);
 			repository.save(sce);
-
 			return new StudentCarrerDTO(sce);
 
 		}

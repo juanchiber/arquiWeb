@@ -35,6 +35,7 @@ public class StudentController {
 	
 	@PostMapping("")	
 	public ResponseEntity<?> save(@RequestBody StudentDTO s){
+
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.save(s));
 		}

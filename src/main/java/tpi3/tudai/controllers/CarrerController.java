@@ -5,11 +5,8 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tpi3.tudai.dtos.CarrerDTO;
 import tpi3.tudai.dtos.StudentCarrerDTO;
 import tpi3.tudai.entities.Carrer;
 import tpi3.tudai.entities.StudentCarrer;
@@ -36,7 +33,7 @@ public class CarrerController {
 	}
 	
 	@PostMapping("")	
-	public ResponseEntity<?> save(@RequestBody Carrer c){
+	public ResponseEntity<?> save(@RequestBody CarrerDTO c){
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.save(c));
 		}
@@ -45,12 +42,17 @@ public class CarrerController {
 		}
 	}
 	@PostMapping("/matricular")
-	public ResponseEntity<?> matricular(@RequestBody StudentCarrerDTO sc){
+	public ResponseEntity<?> matricular(@RequestParam Integer id_Estudiante, @RequestParam Integer id_Carrera){
+		System.out.println("1 controler");
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(serviceStudentCarrera.save(sc));
+			System.out.println("2 controler");
+
+			return ResponseEntity.status(HttpStatus.OK).body(serviceStudentCarrera.matricular(id_Estudiante,id_Carrera));
 		}
 		catch(Exception e){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
 		}
+
 	}
+
 }

@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import tpi3.tudai.dtos.CarrerDTO;
 
 @Entity
 @Table(name = "carrers")
@@ -40,6 +41,12 @@ public class Carrer {
         this.id = id;
         this.nombre = nombre;
         this.duracionAnios = duracionAnios;
+        this.estudiantes = new HashSet<StudentCarrer>();
+    }
+    public Carrer(CarrerDTO c) {
+        this.id = c.getId();
+        this.nombre = c.getNombre();
+        this.duracionAnios = c.getDuracionAnios();
         this.estudiantes = new HashSet<StudentCarrer>();
     }
     

@@ -5,14 +5,12 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tpi3.tudai.dtos.StudentCarrerDTO;
 import tpi3.tudai.entities.StudentCarrer;
 import tpi3.tudai.services.StudentCarrerService;
+
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/studentsCarrers")
@@ -39,6 +37,19 @@ public class StudentCarrerController {
 		catch(Exception e){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
 		}
+	}
+	@PostMapping("/matricular")
+	public ResponseEntity<?> matricular(@RequestParam Integer id_Estudiante, @RequestParam Integer id_Carrera){
+
+		try {
+
+
+			return ResponseEntity.status(HttpStatus.OK).body(service.matricular(id_Estudiante,id_Carrera));
+		}
+		catch(Exception e){
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
+		}
+
 	}
 
 }

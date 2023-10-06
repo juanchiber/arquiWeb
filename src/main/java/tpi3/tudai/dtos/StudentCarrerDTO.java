@@ -17,6 +17,11 @@ public class StudentCarrerDTO {
     public StudentCarrerDTO(){
 
     }
+    public StudentCarrerDTO(Integer id_Estudiante, Integer id_carrera){
+       this.id_Estudiante=id_Estudiante;
+       this.id_Carrera=id_carrera;
+    }
+
     public StudentCarrerDTO(StudentCarrer sc){
       this.id_Carrera= sc.getCarrera().getId();
       this.id_Estudiante=sc.getEstudiante().getId();

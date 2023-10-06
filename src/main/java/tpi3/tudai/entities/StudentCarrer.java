@@ -75,10 +75,7 @@ public class StudentCarrer {
         this.estudiante = e;
         this.carrera = c;
         this.seGraduo=false;
-        /*
-        e.getStudentCarrers().add(this);
-    	c.getStudentCarrers().add(this);
-         */
+
     }
     /*
     public StudentCarrer(LocalDate inscripcion, Student e, Carrer c) {
