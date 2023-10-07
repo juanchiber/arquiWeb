@@ -20,12 +20,18 @@ public class TpIntegrador3Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TpIntegrador3Application.class, args);
+		/*
+		StudentCarrerDTO scdto= new StudentCarrerDTO(7000, 4);
+		CarrerController cc= new CarrerController();
+		cc.matricular(scdto);
+		*/
+		
 	}
 	
 	
 	@PostConstruct
 	public void init() throws IOException {
-//		data.loadDataFromCSV();
+		// data.loadDataFromCSV();
 
 
 

@@ -72,6 +72,7 @@ public class Student {
         this.numeroLibreta = numeroLibreta;
         this.carreras = new HashSet<StudentCarrer>();
     }
+    
     public Student(StudentDTO s) {
         this.id = s.getId();
         this.nombre = s.getNombre();

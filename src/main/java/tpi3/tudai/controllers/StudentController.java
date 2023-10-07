@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import tpi3.tudai.dtos.StudentCarrerDTO;
 import tpi3.tudai.dtos.StudentDTO;
 import tpi3.tudai.entities.Student;
 import tpi3.tudai.repositories.StudentRepository;
@@ -63,7 +65,6 @@ public class StudentController {
 	}
 	
 	@GetMapping("/carrerAndCity/{id}/{city}") 
-	// @PostMapping("/carrerAndCity")
 	public ResponseEntity<?> getStudentsByCityAndCarrer(@PathVariable Integer id, @PathVariable String city){
 		try{
             return ResponseEntity.status(HttpStatus.OK).body(service.findStudentsByCityAndCarrer(id, city));

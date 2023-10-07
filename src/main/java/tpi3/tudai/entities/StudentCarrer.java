@@ -68,7 +68,7 @@ public class StudentCarrer {
     	c.getStudentCarrers().add(this);
          */
 	}
-    public StudentCarrer( Student e, Carrer c) {
+    public StudentCarrer(Student e, Carrer c) {
         //this.idComp = new StudentCarrerID(e, c);
         this.inscripcion = LocalDate.now();
         this.graduacion=LocalDate.of(0, 1, 1);

@@ -6,8 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
+import tpi3.tudai.dtos.StudentCarrerDTO;
 import tpi3.tudai.dtos.StudentDTO;
+import tpi3.tudai.entities.Carrer;
 import tpi3.tudai.entities.Student;
+import tpi3.tudai.entities.StudentCarrer;
+import tpi3.tudai.repositories.CarrerRepository;
+import tpi3.tudai.repositories.StudentCarrerRepository;
 import tpi3.tudai.repositories.StudentRepository;
 
 @Service
@@ -15,6 +20,8 @@ public class StudentService implements BaseService<StudentDTO>{
 	
 	@Autowired
 	private StudentRepository repository;
+	private CarrerRepository carrerRepository;
+	private StudentCarrerRepository repositoryStudentCarrer;
 
 	@Override
 	@Transactional

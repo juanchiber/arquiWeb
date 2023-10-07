@@ -13,7 +13,9 @@ import tpi3.tudai.entities.Student;
 import tpi3.tudai.entities.StudentCarrer;
 import tpi3.tudai.repositories.CarrerRepository;
 import tpi3.tudai.repositories.StudentCarrerRepository;
+import tpi3.tudai.dtos.CarrerDTO;
 import tpi3.tudai.dtos.StudentCarrerDTO;
+import tpi3.tudai.dtos.StudentDTO;
 import tpi3.tudai.repositories.StudentRepository;
 
 @Service
@@ -27,25 +29,37 @@ public class StudentCarrerService implements BaseService<StudentCarrerDTO>{
 	@Override
 	@Transactional
 	public List<StudentCarrerDTO> findAll() throws Exception {
-//		return repository.findAll();
-		return new ArrayList<StudentCarrerDTO>();
-	}
-
-	@Override
-	@Transactional
-	public StudentCarrerDTO findById(Integer id) throws Exception{
-		try {
-			Optional<StudentCarrer> studentCarrer= repository.findById(id);
-//			return studentCarrer.get();
-			return new StudentCarrerDTO();
+		List<StudentCarrer> sc= repository.findAll();
+		List<StudentCarrerDTO> all= new ArrayList<>();
+		for(StudentCarrer s:sc){
+			StudentCarrerDTO aux= new StudentCarrerDTO(s);
+		   all.add(aux);
 		}
-		catch(Exception e) {
-			throw new Exception(e.getMessage());
-		}	
+		return all;
 	}
 
 	@Override
-	public StudentCarrerDTO save(StudentCarrerDTO entity) throws Exception {
+	public StudentCarrerDTO save(StudentCarrerDTO scdto) throws Exception {
+		try {
+			Optional<Carrer> carrerOpt= repositoryCarrer.findById(scdto.getId_carrer());
+			Carrer carrer= carrerOpt.get();
+			Optional<Student> studentOpt= repositoryStudent.findById(scdto.getId_student());
+			Student student= studentOpt.get();
+			StudentCarrer sc= new StudentCarrer(student, carrer);
+			return new StudentCarrerDTO(repository.save(sc));
+		}
+		catch(Exception e){
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public StudentCarrer matricular(StudentCarrer sc){
+        return repository.save(sc);
+    }
+
+	@Override
+	public StudentCarrerDTO findById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -1,7 +1,7 @@
 package tpi3.tudai.services;
 import java.util.List;
 	
-	public interface BaseService<E>{
+	public interface BaseService<E> {
 
 	    /**
 	     * Servicio encargado de retornar un listado completo de una entidad.

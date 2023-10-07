@@ -52,6 +52,22 @@ public class CarrerController {
 		}
 	}
 	
+	
+	/*
+	@PostMapping("/matricular")
+    public ResponseEntity<?> matricular(@RequestParam Integer id_student, @RequestParam Integer id_carrer){
+        try{
+        	
+        	//Integer id_student = sc.getId_student();
+        	//Integer id_carrer = sc.getId_carrer();
+        	service.matricular(id_student, id_carrer);
+            return ResponseEntity.status(HttpStatus.OK).body("OK");
+            
+        }catch (Exception e){
+        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
+        }
+    }
+
 	@PostMapping("/matricular")
 	public ResponseEntity<?> matricular(@RequestBody StudentCarrerDTO sc){
 		try {
@@ -62,7 +78,6 @@ public class CarrerController {
 		catch(Exception e){
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
 		}
-
 	}
-
+	 */
 }

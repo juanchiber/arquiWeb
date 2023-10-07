@@ -3,12 +3,15 @@ package tpi3.tudai.repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import tpi3.tudai.entities.Carrer;
 import tpi3.tudai.entities.Student;
 
 @Repository("StudentRepository")
-public interface StudentRepository extends RepositoryBase<Student, Integer>  {
+public interface StudentRepository extends JpaRepository<Student, Integer>  {
 	
 	@Query("SELECT s FROM Student s WHERE s.nombre = :nombre")
 	public List<Student> findAllByName(String nombre);
@@ -16,9 +19,11 @@ public interface StudentRepository extends RepositoryBase<Student, Integer>  {
 	@Query("SELECT s FROM Student s WHERE s.apellido = :apellido")
 	public List<Student> findAllBySurname(String apellido);
 
+	/*
 	@Override
 	@Query("SELECT s FROM Student s WHERE s.id = :id")
 	public Optional<Student> findById(Integer id);
+	*/
 	
 	@Query("SELECT s FROM Student s WHERE s.genero= :genre")
 	public List<Student> findByGenero(String genre);

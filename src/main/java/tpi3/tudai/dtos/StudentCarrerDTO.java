@@ -10,35 +10,38 @@ import java.util.Date;
 @Getter
 @Setter
 public class StudentCarrerDTO {
-    private Integer id_Estudiante;
-    private Integer id_Carrera;
+    private Integer id_student;
+    private Integer id_carrer;
 
 
     public StudentCarrerDTO(){
 
     }
-    public StudentCarrerDTO(Integer id_Estudiante, Integer id_carrera){
-       this.id_Estudiante=id_Estudiante;
-       this.id_Carrera=id_carrera;
+    
+    public StudentCarrerDTO(Integer id_student, Integer id_carrer){
+       this.id_student= id_student;
+       this.id_carrer= id_carrer;
     }
 
     public StudentCarrerDTO(StudentCarrer sc){
-      this.id_Carrera= sc.getCarrera().getId();
-      this.id_Estudiante=sc.getEstudiante().getId();
+    	this.id_student= sc.getEstudiante().getId();
+    	this.id_carrer= sc.getCarrera().getId();
     }
     
-	public Integer getId_Estudiante() {
-		return id_Estudiante;
+	public Integer getId_student() {
+		return id_student;
 	}
 	
-	public Integer getId_Carrera() {
-		return id_Carrera;
+	public Integer getId_carrer() {
+		return id_carrer;
 	}
-	public void setId_Estudiante(Integer id_Estudiante) {
-		this.id_Estudiante = id_Estudiante;
+	
+	public void setId_Estudiante(Integer id_student) {
+		this.id_student = id_student;
 	}
-	public void setId_Carrera(Integer id_Carrera) {
-		this.id_Carrera = id_Carrera;
+	
+	public void setId_Carrera(Integer id_carrer) {
+		this.id_carrer = id_carrer;
 	}
 	
     

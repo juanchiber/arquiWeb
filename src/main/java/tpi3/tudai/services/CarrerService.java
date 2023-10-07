@@ -1,10 +1,13 @@
 package tpi3.tudai.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import jakarta.transaction.Transactional;
 import tpi3.tudai.dtos.CarrerDTO;
 import tpi3.tudai.dtos.StudentCarrerDTO;
@@ -23,14 +26,21 @@ public class CarrerService implements BaseService<CarrerDTO>{
 	private CarrerRepository repositoryCarrer;
 	private StudentRepository repositoryStudent;
 	private StudentCarrerRepository repositoryStudentCarrer;
+	private StudentService studentService;
 
 	@Override
 	@Transactional
 	public List<CarrerDTO> findAll() throws Exception {
-//		return repository.findAll();
-		return null;
+		List<Carrer> carrers= repositoryCarrer.findAll();
+		List<CarrerDTO> all= new ArrayList<>();
+		for(Carrer c: carrers){
+           CarrerDTO aux= new CarrerDTO(c);
+		   all.add(aux);
+		}
+		return all;
 	}
 
+	
 	@Override
 	@Transactional
 	public CarrerDTO findById(Integer id) throws Exception{
@@ -59,6 +69,7 @@ public class CarrerService implements BaseService<CarrerDTO>{
 	@Override
 	@Transactional
 	public CarrerDTO save(CarrerDTO cdto) throws Exception {
+		System.out.println("|22");
 		try {
 			Carrer c= new Carrer(cdto);
 			return new CarrerDTO(repositoryCarrer.save(c));
@@ -70,23 +81,30 @@ public class CarrerService implements BaseService<CarrerDTO>{
 	
 	/* borrar si no anda */
 	
+	/*
 	@Transactional
-	public void matricular(StudentCarrerDTO sc) throws Exception {
-		Objects.requireNonNull(sc.getId_Estudiante());
-		Objects.requireNonNull(sc.getId_Carrera());
+	public StudentCarrerDTO matricular(Integer id_student, Integer id_carrer) throws Exception{
+		System.out.println("000");
 		try {
-			Optional<Student> resultado= this.repositoryStudent.findById(sc.getId_Estudiante());
-			Student student= resultado.get();
-			Optional<Carrer> resultadocarrera= this.repositoryCarrer.findById(sc.getId_Carrera());
-			Carrer carrer= resultadocarrera.get();
-            StudentCarrer sce= new StudentCarrer(student,carrer);
+			System.out.println(id_student);
+			// Optional<Student> s_aux= this.repositoryStudent.findById(id_student);
+			StudentDTO s_aux= this.studentService.findById(id_student);
+			System.out.println(s_aux.getApellido());
+			Student student= new Student(s_aux);
+			System.out.println(student.getApellido());
+			System.out.println(student.getApellido());
+			Optional<Carrer> c_aux= this.repositoryCarrer.findById(id_carrer);
+			Carrer carrer= c_aux.get();
+			System.out.println(carrer.getNombre());
+            StudentCarrer sce= new StudentCarrer(student, carrer);
 			repositoryStudentCarrer.save(sce);
-
+			return new StudentCarrerDTO(student.getId(), carrer.getId());
 		}
 		catch(Exception e){
 			throw new Exception(e.getMessage());
 		}
 	}
+	*/
 
 
 
