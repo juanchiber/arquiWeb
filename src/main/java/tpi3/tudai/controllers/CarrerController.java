@@ -1,27 +1,25 @@
 package tpi3.tudai.controllers;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tpi3.tudai.dtos.CarrerDTO;
 import tpi3.tudai.dtos.StudentCarrerDTO;
-import tpi3.tudai.entities.Carrer;
-import tpi3.tudai.entities.StudentCarrer;
+import tpi3.tudai.dtos.StudentDTO;
 import tpi3.tudai.services.CarrerService;
-import tpi3.tudai.services.StudentCarrerService;
 
 @RestController
 @RequestMapping("/carrers")
-
 public class CarrerController {
 	
-	@Autowired
 	private CarrerService service;
-	private StudentCarrerService serviceStudentCarrera;
 	
+	@Autowired
+	public CarrerController(CarrerService service) {
+		this.service = service;
+	}
+
 	@GetMapping("")
 	public ResponseEntity<?> getCarrers(){
 		try {
@@ -42,42 +40,26 @@ public class CarrerController {
 		}
 	}
 	
+	@PostMapping("/{id_carrer}/matricular")
+	public ResponseEntity<?> matricular(@RequestBody StudentDTO dto, @PathVariable Integer id_carrer){
+		return ResponseEntity.status(HttpStatus.OK).body(this.service.matricular(dto.getId(), id_carrer ));
+	}	
+	
+	@GetMapping("/report")
+	public ResponseEntity<?> getReport(){
+		return ResponseEntity.status(HttpStatus.OK).body(this.service.getReport());
+	}	
+	
 	@PostMapping("")	
 	public ResponseEntity<?> save(@RequestBody CarrerDTO c){
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.save(c));
 		}
 		catch(Exception e){
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, revise los campos e intente nuevamente.");
 		}
 	}
 	
 	
-	/*
-	@PostMapping("/matricular")
-    public ResponseEntity<?> matricular(@RequestParam Integer id_student, @RequestParam Integer id_carrer){
-        try{
-        	
-        	//Integer id_student = sc.getId_student();
-        	//Integer id_carrer = sc.getId_carrer();
-        	service.matricular(id_student, id_carrer);
-            return ResponseEntity.status(HttpStatus.OK).body("OK");
-            
-        }catch (Exception e){
-        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
-        }
-    }
-
-	@PostMapping("/matricular")
-	public ResponseEntity<?> matricular(@RequestBody StudentCarrerDTO sc){
-		try {
-			service.matricular(sc);
-			return ResponseEntity.status(HttpStatus.OK).body("Se matriculo correctamente el estudiante con id: " + sc.getId_Estudiante() + " en la carrera: " + sc.getId_Carrera());
-			
-		}
-		catch(Exception e){
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
-		}
-	}
-	 */
+	
 }

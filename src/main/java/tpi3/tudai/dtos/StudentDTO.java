@@ -24,22 +24,9 @@ public class StudentDTO {
     private Integer numeroLibreta;
     private Set<StudentCarrer> carreras;
 
-
     public StudentDTO(){
         super();
     }
-    
-    /*
-    public StudentDTO(String nombre, String apellido, Integer edad, String genero, String ciudadResidencia, String documento, Integer numeroLibreta) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.genero = genero;
-        this.ciudadResidencia = ciudadResidencia;
-        this.documento = documento;
-        this.numeroLibreta = numeroLibreta;
-    }
-    */
     
     public StudentDTO(Student s) {
     	this.id = s.getId();

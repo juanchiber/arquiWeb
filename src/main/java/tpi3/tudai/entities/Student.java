@@ -153,17 +153,6 @@ public class Student {
     	return id;
     }
     
-    /*
-    public List<StudentCarrer> getCarreras(){
-        if(this.carreras.isEmpty()){
-            StudentCarrerRepository ecr = new StudentCarrerRepository();
-           	List<StudentCarrer> aux = ecr.getEstudianteCarreraByIdEstudiante(this.getId());
-            return new ArrayList<StudentCarrer>(aux);
-        }
-        return new ArrayList<StudentCarrer>(this.carreras);
-    }
-    */
-    
 	@Override
 	public String toString() {
 		return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";

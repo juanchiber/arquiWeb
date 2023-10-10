@@ -13,7 +13,6 @@ public class StudentCarrerDTO {
     private Integer id_student;
     private Integer id_carrer;
 
-
     public StudentCarrerDTO(){
 
     }
@@ -44,7 +43,4 @@ public class StudentCarrerDTO {
 		this.id_carrer = id_carrer;
 	}
 	
-    
-    
-
 }

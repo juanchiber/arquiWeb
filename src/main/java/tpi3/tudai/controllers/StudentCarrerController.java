@@ -39,15 +39,6 @@ public class StudentCarrerController {
 		}
 	}
 	
-	@PostMapping("/matricular")
-    public ResponseEntity<?> matricular(@RequestBody StudentCarrerDTO sc){
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(this.service.save(sc));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error, no se pudo crear la relacion");
-        }
-    }
-	
 
 }
 

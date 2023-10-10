@@ -12,13 +12,9 @@ import lombok.Data;
 public class StudentCarrerID implements Serializable {
     
     @ManyToOne
-    //@JoinColumn(name = "id_estudiante")
-    //@JoinColumn(name = "id_estudiante", referencedColumnName = "id")
     private Student estudiante;
 
     @ManyToOne
-    //@JoinColumn(name = "id_carrera")
-    //@JoinColumn(name = "id_carrera", referencedColumnName = "id")
     private Carrer carrera;
     
 	public StudentCarrerID(Student estudiante, Carrer carrera) {

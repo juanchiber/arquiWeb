@@ -1,6 +1,5 @@
 package tpi3.tudai.controllers;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,16 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import tpi3.tudai.dtos.StudentCarrerDTO;
 import tpi3.tudai.dtos.StudentDTO;
-import tpi3.tudai.entities.Student;
-import tpi3.tudai.repositories.StudentRepository;
 import tpi3.tudai.services.StudentService;
-
-
 
 @RestController
 @RequestMapping("/students")
@@ -27,7 +19,7 @@ public class StudentController {
 	@Autowired
 	private StudentService service;
 	
-	@GetMapping("")	//url a la que tiene que acceder (/students)
+	@GetMapping("")	
 	public ResponseEntity<?> getStudents(){
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
@@ -46,7 +38,7 @@ public class StudentController {
         }
     }
 	
-	@GetMapping("libreta/{libreta}")
+	@GetMapping("notebook/{libreta}")
     public ResponseEntity<?> getByNotebook(@PathVariable Integer libreta) {
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.findByNotebook(libreta));
@@ -55,7 +47,7 @@ public class StudentController {
         }
     }
 	
-	@GetMapping("/orderByName/{name}")
+	@GetMapping("/orderByName")
 	public ResponseEntity<?> getAllOrderByName(){
 		try{
             return ResponseEntity.status(HttpStatus.OK).body(service.findAllOrderByName());
@@ -80,7 +72,7 @@ public class StudentController {
 			return ResponseEntity.status(HttpStatus.OK).body(service.save(s));
 		}
 		catch(Exception e){
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, revise los campos e intente nuevamente.\"}");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 }

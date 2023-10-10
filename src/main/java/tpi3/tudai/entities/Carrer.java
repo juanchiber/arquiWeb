@@ -66,17 +66,6 @@ public class Carrer {
         return id;
     }
     
-    /*
-    public Carrer getCarrerById(Set<Carrer> carreras, Integer id) {
-        for (Carrer carrera : carreras) {
-            if (carrera.getId().equals(id)) {
-                return carrera;
-            }
-        }
-        return null; 
-    }
-   */
-    
 	public void setId(Integer id) {
 		this.id = id;
 	}

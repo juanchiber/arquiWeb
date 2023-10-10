@@ -26,10 +26,7 @@ import lombok.Setter;
 @IdClass(StudentCarrerID.class)
 @Getter
 @Setter
-public class StudentCarrer {
-	
-    //@EmbeddedId
-    //private StudentCarrerID idComp;	 
+public class StudentCarrer { 
 	
     @Column
     LocalDate inscripcion;
@@ -42,18 +39,15 @@ public class StudentCarrer {
     
     @Id
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_estudiante", referencedColumnName = "id") // nombre de columna diferente
+    @JoinColumn(name = "id_estudiante", referencedColumnName = "id") 
     private Student estudiante;
     
     @Id
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_carrera", referencedColumnName = "id") // nombre de columna diferente
+    @JoinColumn(name = "id_carrera", referencedColumnName = "id") 
     private Carrer carrera;
-
-    
     
     public StudentCarrer(LocalDate inscripcion, LocalDate graduacion, Student e, Carrer c) {
-		//this.idComp = new StudentCarrerID(e, c);
 		this.inscripcion = inscripcion;
         if(graduacion.getYear()==0) {
         	this.seGraduo= false;
@@ -63,13 +57,9 @@ public class StudentCarrer {
         this.graduacion = graduacion;
         this.estudiante = e;
         this.carrera = c;
-        /*
-        e.getStudentCarrers().add(this);
-    	c.getStudentCarrers().add(this);
-         */
 	}
+    
     public StudentCarrer(Student e, Carrer c) {
-        //this.idComp = new StudentCarrerID(e, c);
         this.inscripcion = LocalDate.now();
         this.graduacion=LocalDate.of(0, 1, 1);
         this.estudiante = e;
@@ -77,23 +67,7 @@ public class StudentCarrer {
         this.seGraduo=false;
 
     }
-    /*
-    public StudentCarrer(LocalDate inscripcion, Student e, Carrer c) {
-        this.inscripcion = inscripcion;
-        this.seGraduo = false;
-        this.graduacion = null;
-        //StudentCarrerID id = new StudentCarrerID(e, c);
-        //this.idComp = id;
-    }
-    
-    public StudentCarrer(Student e, Carrer c){
-    	//StudentCarrerID id = new StudentCarrerID(e, c);
-    	//this.id = id;
-        this.inscripcion = LocalDate.now();
-        this.graduacion = null;
-        this.seGraduo = false;
-    }
-     */
+   
     public StudentCarrer() {
     }
     
